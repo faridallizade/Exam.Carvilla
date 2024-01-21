@@ -3,7 +3,7 @@
 
 <form method="post">
 
-    <button style="margin-left:95%;" asp-action="Create" asp-controller="Client" type="submit" class="btn btn-primary">Create</button>
+    <a style="margin-left:95%;" asp-action="Create" asp-controller="Client" type="submit" class="btn btn-primary">Create</a>
     <table class="table">
         <thead>
             <tr>
@@ -24,14 +24,12 @@
                     <td>@item.Name</td>
                     <td>@item.Description</td>
                     <td>
-                        <div>
-                            <img src="~/Upload/@item.ImageUrl"/>
-                        </div>
+                        <img src="~/Upload/@item.ImageUrl" />
                     </td>
                     <td>@item.CityLocation</td>
                     <td>
-                        <button asp-action="Update" asp-controller="Client" asp-route-id="@item.Id" type="submit" class="btn btn-warning">Update</button>
-                        <button asp-action="Delete" asp-controller="Client" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Delete</button>
+                        <a asp-action="Update" asp-controller="Client" asp-route-id="@item.Id" type="submit" class="btn btn-warning">Update</a>
+                        <a asp-action="Delete" asp-controller="Client" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Delete</a>
 
                     </td>
                 </tr>

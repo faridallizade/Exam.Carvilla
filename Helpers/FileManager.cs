@@ -13,12 +13,12 @@ namespace CarVilla.Helpers
         {
             string uploadPath = web + folderPath;
             var fileName = Guid.NewGuid().ToString() + file.FileName;
-            var filePath = web+ folderPath+file.FileName;
-            if(!Directory.Exists(filePath))
+            var filePath = uploadPath+fileName;
+            if(!Directory.Exists(uploadPath))
             {
-                Directory.CreateDirectory(filePath);
+                Directory.CreateDirectory(uploadPath);
             }
-            using(var stream = new FileStream(fileName, FileMode.Create))
+            using(var stream = new FileStream(filePath, FileMode.Create))
             {
                 file.CopyTo(stream);
             }

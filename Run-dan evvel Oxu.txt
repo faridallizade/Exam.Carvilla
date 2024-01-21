@@ -1,0 +1,6 @@
+Accounts
+Admin hesabi - admin (password : Admin1)
+Moderator hesabi - moderator (password : moderator)
+
+1. HomePage- de Switch to Dashboard butonu ile Admin panele kecis
+2. Admin Panelde soldaki bar-da Back To Home Page butonu ile Home-a kecis

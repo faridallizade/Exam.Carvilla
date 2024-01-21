@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
+using NuGet.Packaging.Signing;
 using System.Drawing.Printing;
 
 namespace CarVilla.Areas.Admin.Controllers
@@ -38,11 +39,11 @@ namespace CarVilla.Areas.Admin.Controllers
         public async Task<IActionResult> Create(CreateClientVm vm)
         {
             if(!ModelState.IsValid) return View();
-            if (!vm.ImageUrl.Contains("image/"))
+            if (!vm.ImageFile.ContentType.Contains("image/"))
             {
                 ModelState.AddModelError("Image", "Only Image file less than 3 Mb is accepted.");
             }
-
+            vm.ImageUrl = vm.ImageFile.Upload(_env.WebRootPath, @"/Upload/");
             Client client = new Client()
             {
                 Name = vm.Name,
@@ -54,6 +55,8 @@ namespace CarVilla.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index","Client");
         }
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Update(int id)
         {
             Client client = await _context.clients.Where(c=>c.Id == id).FirstOrDefaultAsync();
@@ -69,23 +72,30 @@ namespace CarVilla.Areas.Admin.Controllers
             return View(vm);   
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Update(UpdateClientVm vm)
         {
             if (!ModelState.IsValid) return View();
-            if (!vm.ImageUrl.Contains("image/"))
+            if (!vm.ImageFile.ContentType.Contains("image/"))
             {
                 ModelState.AddModelError("Image", "Only Image file less than 3 Mb is accepted.");
             }
-            Client existClient = new Client()
+            Client exist = await _context.clients.Where(c=>c.Id == vm.Id).FirstOrDefaultAsync();
+            if(exist == null) { return NotFound(); }
+            vm.ImageUrl = vm.ImageFile.Upload(_env.WebRootPath, @"/Upload/");
+            exist.Name = vm.Name;
+            exist.Description = vm.Description;
+            exist.CityLocation = vm.CityLocation;
+            if(vm.ImageUrl != null)
             {
-                Name = vm.Name,
-                Description = vm.Description,
-                CityLocation = vm.CityLocation,
-                ImageUrl = vm.ImageFile.Upload(_env.WebRootPath,@"/Upload/")
-            };
+                exist.ImageUrl = vm.ImageUrl;
+            }
             await _context.SaveChangesAsync();
             return RedirectToAction("Index","Client");
         }
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(int id)
         {
             Client client = await _context.clients.Where(c => c.Id == id).FirstOrDefaultAsync();

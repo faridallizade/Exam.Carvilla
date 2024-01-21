@@ -1,6 +1,18 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\II novbe\\source\\repos\\CarVilla\\CarVilla\\wwwroot\\Upload\\21eab791-4375-4394-bdb3-33dd19cf35dfc3.png",
+      "PackagePath": "staticwebassets\\Upload\\21eab791-4375-4394-bdb3-33dd19cf35dfc3.png"
+    },
+    {
+      "Id": "C:\\Users\\II novbe\\source\\repos\\CarVilla\\CarVilla\\wwwroot\\Upload\\697e1bbd-dc70-4689-9291-917dfd406711c2.png",
+      "PackagePath": "staticwebassets\\Upload\\697e1bbd-dc70-4689-9291-917dfd406711c2.png"
+    },
+    {
+      "Id": "C:\\Users\\II novbe\\source\\repos\\CarVilla\\CarVilla\\wwwroot\\Upload\\6c03934f-cced-4c3e-a570-5268c226db0ac2.png",
+      "PackagePath": "staticwebassets\\Upload\\6c03934f-cced-4c3e-a570-5268c226db0ac2.png"
+    },
+    {
       "Id": "C:\\Users\\II novbe\\source\\repos\\CarVilla\\CarVilla\\wwwroot\\account\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\account\\css\\bootstrap.min.css"
     },
