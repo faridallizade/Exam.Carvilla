@@ -1,0 +1,44 @@
+﻿@using CarVilla.Models
+@model List<Client>
+
+<form method="post">
+
+    <button style="margin-left:95%;" asp-action="Create" asp-controller="Client" type="submit" class="btn btn-primary">Create</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Client ID</th>
+                <th scope="col">Client Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Profile Image</th>
+                <th scope="col">Location (City)</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <div>
+                            <img src="~/Upload/@item.ImageUrl"/>
+                        </div>
+                    </td>
+                    <td>@item.CityLocation</td>
+                    <td>
+                        <button asp-action="Update" asp-controller="Client" asp-route-id="@item.Id" type="submit" class="btn btn-warning">Update</button>
+                        <button asp-action="Delete" asp-controller="Client" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Delete</button>
+
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+
+</form>
